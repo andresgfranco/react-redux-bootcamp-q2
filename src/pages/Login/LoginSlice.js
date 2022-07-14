@@ -11,9 +11,13 @@ const loginSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload.username;
       state.isLogged = true;
+    },
+
+    unsetUser: (state, action) => {
+      console.log(state);
     }
   },
 });
 
-export const {setUser} = loginSlice.actions;
+export const { setUser, unsetUser } = loginSlice.actions;
 export default loginSlice.reducer;

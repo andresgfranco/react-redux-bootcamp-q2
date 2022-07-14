@@ -11,13 +11,13 @@ import { Redirect } from 'react-router-dom';
 export const AppRouter = () => {
   const isLoggedIn = useSelector((state) => state.login.isLogged)
 
-  console.log(isLoggedIn);
-
   return (
     <Router>
       <Header />
       <Switch>
-        { isLoggedIn
+
+        {
+          isLoggedIn
           ?
           <>
             <Redirect to='/products'/>
@@ -36,7 +36,6 @@ export const AppRouter = () => {
             </Route>
           </>
         }
-
 
       </Switch>
     </Router>

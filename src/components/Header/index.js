@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import {
   Bar,
@@ -8,6 +9,7 @@ import {
 
 export const Header = () => {
   const isLoggedIn = useSelector((state) => state.login.isLogged)
+  const currentLocation = useLocation().pathname;
 
   return (
     <Bar className="topnav" id="myTopnav">
@@ -21,7 +23,7 @@ export const Header = () => {
           <>
             <Links to="/cart">Cart</Links>
             <Links to="/products">Products</Links>
-            <Links>Logout</Links>
+            <Links to={currentLocation}>Logout</Links>
           </>
           :
           <Links to="/login">Login</Links>

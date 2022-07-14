@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const ShopNowTitleWrapper = styled.div`
   display: flex;
   align-items: center;

@@ -7,6 +7,7 @@ import { Header } from '../components/Header';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+
 export const AppRouter = () => {
   const isLoggedIn = useSelector((state) => state.login.isLogged)
 

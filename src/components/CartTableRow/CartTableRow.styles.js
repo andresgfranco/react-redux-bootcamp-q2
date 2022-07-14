@@ -1,27 +1,28 @@
 import styled from 'styled-components';
 
+
 export const TableData = styled.td`
   padding: 1rem;
 `;
 
 export const ProductDetailsWrapper = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
 `;
 
 export const ProductDetailsTextWrapper = styled.div`
+  margin-left: 32px;
   display: flex;
   justify-content: center;
-  margin-left: 32px;
   flex-direction: column;
 `;
 
 export const ProductImageWrapper = styled.div`
+  display: flex;
   width: 25%;
   height: 25%;
-  display: flex;
   margin: 5% 10% 0% 0%;
 `;
 
@@ -31,10 +32,10 @@ export const Image = styled.img`
 `;
 
 export const QuantityWrapper = styled.div`
+  width: 50%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
   margin: auto;
 `;
 

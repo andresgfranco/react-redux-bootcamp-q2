@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const ShopCartWrapper = styled.div`
   margin: 10rem;
   display: flex;

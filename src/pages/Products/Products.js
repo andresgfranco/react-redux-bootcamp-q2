@@ -7,6 +7,7 @@ import {
   ProductsWrapper
 } from './Products.styles';
 
+
 export const Products = () => {
   const products = listOfProducts.data.products.items;
 

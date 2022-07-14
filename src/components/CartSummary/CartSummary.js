@@ -8,8 +8,8 @@ import { CartSummaryWrapper,
   CheckoutButton,
 } from './CartSummary.styles';
 
-export const CartSummary = () => {
-  return (
+
+export const CartSummary = () => (
   <CartSummaryWrapper>
 
     <SummaryTitle>Summary</SummaryTitle>
@@ -22,9 +22,8 @@ export const CartSummary = () => {
     <TotalCostNumber>$ 999</TotalCostNumber>
 
     <CheckoutButtonWrapper>
-     <CheckoutButton>Checkout</CheckoutButton>
+      <CheckoutButton>Checkout</CheckoutButton>
     </CheckoutButtonWrapper>
 
   </CartSummaryWrapper>
-  )
-};
+);

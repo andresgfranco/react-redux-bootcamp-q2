@@ -42,7 +42,7 @@ export const CartSummary = () => {
     <HorizontalLine />
 
     <Text>Total Cost:</Text>
-    <TotalCostNumber>$ {totalCost.toFixed()}</TotalCostNumber>
+    <TotalCostNumber>$ {totalCost.toFixed(1)}</TotalCostNumber>
 
     <CheckoutButtonWrapper>
       <CheckoutButton onClick={checkoutPurchase}>Checkout</CheckoutButton>

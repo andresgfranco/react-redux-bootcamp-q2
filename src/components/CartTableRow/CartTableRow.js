@@ -20,7 +20,7 @@ export const CartTableRow = ({item}) => {
       return state.cart.itemsOnCart.find((element) => element.item.id === id).quantity
     }
   })
-  const totalPrice = quantity ? (price * quantity).toFixed(2) : 0;
+  const totalPrice = quantity ? (price * quantity).toFixed(1) : 0;
 
   return (
     <tr>
@@ -53,7 +53,7 @@ export const CartTableRow = ({item}) => {
       </TableData>
 
       <TableData>${price}</TableData>
-      <TotalPriceData>${parseInt(totalPrice).toFixed()}</TotalPriceData>
+      <TotalPriceData>${totalPrice}</TotalPriceData>
     </tr>
   );
 };

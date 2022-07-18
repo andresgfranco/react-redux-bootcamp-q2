@@ -1,10 +1,10 @@
 import React from 'react';
-import { CartTableRow } from '../CartTableRow/CartTableRow';
+import { useSelector } from 'react-redux';
 import { TableWrapper } from './CartTable.styles'
-import listOfProducts from '../../data/products.json';
+import { CartTableRow } from '../CartTableRow/CartTableRow';
 
 export const CartTable = () => {
-  const arrayOfProducts = listOfProducts.data.products.items.slice(0, 3) //Temporary for testing purposes while submitting second delivery
+  const arrayOfProducts = useSelector((state) => state.cart.itemsOnCart)
 
   return (
     <TableWrapper>
@@ -21,9 +21,8 @@ export const CartTable = () => {
         {arrayOfProducts.map((product) => {
           return (
             <CartTableRow
-              key={product.id}
-              item={product}
-              quantity={2}
+              key={product.item.id}
+              item={product.item}
             />
           );
         })}

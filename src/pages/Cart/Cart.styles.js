@@ -21,3 +21,10 @@ export const ShoppingCartHorizontalLine = styled.hr`
   width: 90%;
   margin: 2rem;
 `;
+
+export const NoItemsTitle = styled.h1`
+  font-size: 30px;
+  overflow: hidden;
+  text-align: center;
+  margin: auto;
+`;

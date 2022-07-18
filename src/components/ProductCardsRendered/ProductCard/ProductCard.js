@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../../../pages/Cart/CartSlice';
 import {
   CardWrapper,
   ProductImageWrapper,
@@ -10,22 +12,25 @@ import {
   AddToCartButtonWrapper
 } from './ProductCard.styles';
 
-export const ProductCard = ({image, name, category, price}) => {
-  name = name.length > 45 ? name.slice(0, 45) + '...' : name; // To keep the product name max in 2 rows when rendering in ProductCard.
+export const ProductCard = ({item}) => {
+  const dispatch = useDispatch();
+  const name = item.name.length > 45 ? item.name.slice(0, 45) + '...' : item.name; // To keep the product name max in 2 rows when rendering in ProductCard.
 
   return (
   <CardWrapper>
 
     <ProductImageWrapper>
-      <ProductImage src={image} alt={'Picture of a ' + name} />
+      <ProductImage src={item.images[0]} alt={'Picture of a ' + name} />
     </ProductImageWrapper>
 
     <ProductName>{name}</ProductName>
-    <ProductCategory>{category}</ProductCategory>
-    <ProductPrice>$ {price}</ProductPrice>
+    <ProductCategory>{item.categories[0]}</ProductCategory>
+    <ProductPrice>$ {item.price}</ProductPrice>
 
     <AddToCartButtonWrapper>
-      <AddToCartButton>Add to  Cart</AddToCartButton>
+      <AddToCartButton onClick={() =>  dispatch(addItemToCart({item}))}>
+        Add to  Cart
+      </AddToCartButton>
     </AddToCartButtonWrapper>
 
   </CardWrapper>

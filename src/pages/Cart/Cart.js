@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { CartTable } from '../../components/CartTable/CartTable';
 import { CartSummary } from '../../components/CartSummary/CartSummary';
 import {
@@ -6,25 +7,32 @@ import {
   ShoppingCartTitle,
   ShoppingCartTableWrapper,
   ShoppingCartHorizontalLine,
+  NoItemsTitle,
 } from './Cart.styles';
 
 
 export const Cart = () => {
+  const itemsOnCart = useSelector((state) => state.cart.itemsOnCart)
+
   return (
-    <ShopCartWrapper>
+      (itemsOnCart === undefined || itemsOnCart.length === 0)
+      ?
+      <NoItemsTitle>There's no items in your cart :(</NoItemsTitle>
+      :
+      <ShopCartWrapper>
 
-      <ShoppingCartTableWrapper>
+        <ShoppingCartTableWrapper>
 
-        <ShoppingCartTitle>
-          Shopping Cart
-        </ShoppingCartTitle>
-        <ShoppingCartHorizontalLine/>
-        <CartTable/>
+          <ShoppingCartTitle>
+            Shopping Cart
+          </ShoppingCartTitle>
+          <ShoppingCartHorizontalLine/>
+          <CartTable/>
 
-      </ShoppingCartTableWrapper>
+        </ShoppingCartTableWrapper>
 
-      <CartSummary/>
+        <CartSummary/>
 
-    </ShopCartWrapper>
+      </ShopCartWrapper>
   )
 }

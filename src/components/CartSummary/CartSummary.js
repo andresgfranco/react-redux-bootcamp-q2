@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { checkoutProducts } from '../../pages/Cart/CheckoutSlice';
 import { CartSummaryWrapper,
   SummaryTitle,
   Text,
@@ -9,21 +12,43 @@ import { CartSummaryWrapper,
 } from './CartSummary.styles';
 
 
-export const CartSummary = () => (
+export const CartSummary = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const arrayOfItemsOnCart = useSelector((state) => state.cart.itemsOnCart)
+  const totalItems = arrayOfItemsOnCart.reduce(
+    (total, item) => (total += item.quantity),
+    0
+  );
+  const totalCost = arrayOfItemsOnCart.reduce(
+    (total, element) => (total += element.item.price * element.quantity),
+    0
+  );
+	const checkoutPurchase = () => {
+		dispatch(checkoutProducts()).then((result) => {
+      console.log(result)
+			if (result.meta.requestStatus === "fulfilled") {
+				history.push("checkout");
+			}
+		});
+	};
+
+  return(
   <CartSummaryWrapper>
 
     <SummaryTitle>Summary</SummaryTitle>
     <HorizontalLine />
 
-    <Text>Items: 4</Text>
+    <Text>Items: {totalItems}</Text>
     <HorizontalLine />
 
     <Text>Total Cost:</Text>
-    <TotalCostNumber>$ 999</TotalCostNumber>
+    <TotalCostNumber>$ {totalCost.toFixed()}</TotalCostNumber>
 
     <CheckoutButtonWrapper>
-      <CheckoutButton>Checkout</CheckoutButton>
+      <CheckoutButton onClick={checkoutPurchase}>Checkout</CheckoutButton>
     </CheckoutButtonWrapper>
 
   </CartSummaryWrapper>
-);
+  )
+};

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTotalQuantityOnCart, removeItemFromCart } from '../../pages/Cart/CartSlice';
 import {
   TableData,
   ProductDetailsWrapper,
@@ -7,11 +9,18 @@ import {
   ProductDetailsTextWrapper,
   QuantityWrapper,
   RemoveButton,
+  TotalPriceData,
 } from './CartTableRow.styles';
 
-export const CartTableRow = ({item, quantity}) => {
+export const CartTableRow = ({item}) => {
+  const dispatch = useDispatch();
   const {name, price, images, id} = item;
-  const totalPrice = (price * quantity).toFixed(2);
+  const quantity = useSelector((state) => {
+    if (state.cart.itemsOnCart.find((element) => element.item.id === id)) {
+      return state.cart.itemsOnCart.find((element) => element.item.id === id).quantity
+    }
+  })
+  const totalPrice = quantity ? (price * quantity).toFixed(2) : 0;
 
   return (
     <tr>
@@ -19,7 +28,7 @@ export const CartTableRow = ({item, quantity}) => {
 
         <ProductDetailsWrapper>
           <ProductImageWrapper>
-            <Image src={images[0]} alt={'Picture of the product' + {name}} />
+            <Image src={images[0]} alt={'Picture of the product ' + name} />
           </ProductImageWrapper>
           <ProductDetailsTextWrapper>
             <p>{name}</p>
@@ -33,14 +42,18 @@ export const CartTableRow = ({item, quantity}) => {
           <input
             defaultValue={quantity}
             type='number'
-            min={0}
+            min={1}
+            onChange={(e) => {
+              const itemQuantity = e.target.value === '' ? 1 : parseInt(e.target.value);
+              dispatch(updateTotalQuantityOnCart({idToFind: id, quantity: itemQuantity}))
+            }}
           />
-          <RemoveButton>Remove</RemoveButton>
+          <RemoveButton onClick={() => dispatch(removeItemFromCart({idToFind: id}))}>Remove</RemoveButton>
         </QuantityWrapper>
       </TableData>
 
       <TableData>${price}</TableData>
-      <TableData>${totalPrice}</TableData>
+      <TotalPriceData>${parseInt(totalPrice).toFixed()}</TotalPriceData>
     </tr>
   );
 };

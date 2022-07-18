@@ -7,6 +7,7 @@ export const TableData = styled.td`
 
 export const ProductDetailsWrapper = styled.div`
   width: 100%;
+  padding-top: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -50,4 +51,11 @@ export const RemoveButton = styled.button`
   box-shadow: 2px 2px 25px -7px #4c4c4c;
   cursor: pointer;
 `
+
+export const TotalPriceData = styled.td`
+  padding: 1rem;
+  width: 80px;
+  text-align: center;
+`;
+
 

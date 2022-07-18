@@ -1,5 +1,6 @@
-import React from 'react'
-import listOfProducts from '../../data/products.json';
+import {React, useEffect }from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from './ProductsSlice';
 import { ProductCardsRendered } from '../../components/ProductCardsRendered/ProductCardsRendered';
 import {
   ShopNowTitleWrapper,
@@ -9,7 +10,12 @@ import {
 
 
 export const Products = () => {
-  const products = listOfProducts.data.products.items;
+  const products = useSelector((state) => state.products.products);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchProducts());
+	}, [dispatch]);
 
   return (
     <>
@@ -18,7 +24,13 @@ export const Products = () => {
       </ShopNowTitleWrapper>
 
       <ProductsWrapper>
-        <ProductCardsRendered arrayOfProducts={products}/>
+        {
+          products.items
+          ?
+          <ProductCardsRendered arrayOfProducts={products.items}/>
+          :
+          <></>
+        }
       </ProductsWrapper>
     </>
   )

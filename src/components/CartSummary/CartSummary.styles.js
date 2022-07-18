@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const CartSummaryWrapper = styled.div`
   margin: 1%;
-  width: 30%;
+  width: 20%;
   height: 20rem;
   border-radius: 5%;
   position: relative;

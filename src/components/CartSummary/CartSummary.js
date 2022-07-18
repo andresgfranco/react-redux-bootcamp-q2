@@ -26,7 +26,6 @@ export const CartSummary = () => {
   );
 	const checkoutPurchase = () => {
 		dispatch(checkoutProducts()).then((result) => {
-      console.log(result)
 			if (result.meta.requestStatus === "fulfilled") {
 				history.push("checkout");
 			}

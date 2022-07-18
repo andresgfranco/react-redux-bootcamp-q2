@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
 import { CheckoutMessage, CheckoutReference } from "./Checkout.styles";
 
+
 export const Checkout = () => {
 	const checkout = useSelector((state) => state.checkout);
-
-  console.log(checkout)
 
 	return (
 		<>
